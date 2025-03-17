@@ -1,0 +1,15 @@
+#nav{
+    display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   background-color:#2B4162 ;
+   color:#F5F0F6 ;
+   max-width: auto;
+   
+}
+#logo{
+    width: 50%;
+}
+#form{
+    width: 50%;
+}
