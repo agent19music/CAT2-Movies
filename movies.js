@@ -1,35 +1,32 @@
 const moviesUrl = "http://localhost:3000/movies"
 
 fetch(moviesUrl)
-.then(res => {
-  console.log(res)
-  return res.text()
+.then(res =>   res.json())
 
-}) 
-.then(text => {
-  console.log(text)
-})
+  // console.log(res)
+// .then(text => {
+//   console.log(text)
+// })
 
-.catch(error => {
-  console.log("sth wrong", error)
-})
+// .catch(error => {
+//   console.log("sth wrong", error)
+// })
  
-// .then(data=> {
-//     let  movieList = document.getElementById("list")
-//     movieList.innerHTML =""
-  
-   
+.then(data=> {
+    let  movieList = document.getElementById("list")
+    movieList.innerHTML =""
 
-//        let  moviePoster = data.poster
-//         let movieItem = document.createElement("li")
-//         let poster = document.createElement("img")
+    data.forEach(movie => {
+      //  movie = data.poster
 
-//         poster.src = moviePoster
-//         poster.alt ="movie"
+      let movieItem = document.createElement("li")
+      let poster = document.createElement("img")
 
-//         movieItem.appendChild(poster)
-//         movieList.appendChild(movieItem)
+       poster.src = movie.Poster
+       poster.alt = movie.Title
 
-
-//       })
+       movieItem.appendChild(poster)
+       movieList.appendChild(movieItem)
+    })
+     })
 
