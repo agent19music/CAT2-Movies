@@ -1,15 +1,119 @@
-#nav{
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.navbar{
     display: flex;
-   flex-direction: row;
+   /* flex-direction: row; */
    justify-content: space-between;
-   background-color:#2B4162 ;
+   align-items: center;
+   background-color:#333;
    color:#F5F0F6 ;
-   max-width: auto;
+   padding: 10px 2-px;;
+   /* max-width: auto; */
    
 }
-#logo{
-    width: 50%;
+.logo{
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
 }
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+.dropdown-label{
+    font-size: 16px;
+    /* color: #333; */
+    margin-right: 10px;
+
+}
+select{
+    appearance: none;
+    padding: 10px 40px 10px 15px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+
 #form{
     width: 50%;
 }
+#img-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 20px;
+    padding: 20px;
+    /* justify-content: center; */
+    overflow-x: auto;
+}
+.img-card{
+    background-color: #fff;
+    border: 5px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow:hidden;
+    width: 200px;
+    /* text-align: center; */
+    transition: transform 0,3s ease, box-shadow 0,3s ease;
+
+
+}
+
+.img-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+
+}
+.img-card img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+}
+#list{
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; 
+    justify-content: center; 
+
+}
+#list li {
+    width: 200px; /* Fixed width for each card */
+    background-color: #fff; /* Card background color */
+    border: 1px solid #ddd; /* Card border */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Ensure content stays within the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+  }
+  #list li:hover {
+    transform: translateY(-5px); /* Slightly lift the card */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+  }
+  #list img {
+    width: 100%; /* Make the image fill the card width */
+    height: 300px; /* Fixed height for the image */
+    object-fit: cover; /* Ensure the image covers the area without distortion */
+    border-bottom: 1px solid #ddd; /* Add a border below the image */
+  }
+  #list h3 {
+    margin: 10px 0; /* Space above and below the title */
+    font-size: 1.2em; /* Title font size */
+    color: #333; /* Title color */
+    padding: 0 10px; /* Add padding to the title */
+  }
+  #list p {
+    margin: 5px 0; /* Space above and below the year */
+    font-size: 1em; /* Year font size */
+    color: #777; /* Year color */
+    padding: 0 10px 10px; /* Add padding to the year */
+  }

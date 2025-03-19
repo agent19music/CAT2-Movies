@@ -1,10 +1,10 @@
-{ "movies" : [
+[
     {
-      "Title": "Minions",
+      "Title": "Deap Poets Society",
       "Year": "2015",
       "imdbID": "tt2293640",
       "Type": "movie",
-      "Poster": "https://m.media-amazon.com/images/M/MV5BMTg2MTMyMzU0M15BMl5BanBnXkFtZTgwOTU3ODk4NTE@._V1_SX300.jpg"
+      "Poster": "https://a.ltrbxd.com/resized/film-poster/5/1/8/4/6/51846-dead-poets-society-0-300-0-450-crop.jpg?v=9273e8acf7"
     },
     {
       "Title": "Minions: The Rise of Gru",
@@ -322,4 +322,3 @@
       "Poster": "N/A"
     }
   ]
-}
