@@ -2,49 +2,79 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* background-color: #ABD2FA; */
 }
 .navbar{
     display: flex;
    /* flex-direction: row; */
    justify-content: space-between;
    align-items: center;
-   background-color:#333;
+   background-color:#091540;
    color:#F5F0F6 ;
-   padding: 10px 2-px;;
+   padding: 20px 40px;
+   height: 80px;
+   font-size: 18px;
+   position: sticky;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
    /* max-width: auto; */
    
 }
-.logo{
-    color: white;
+.navbar .logo{
+    color:#F5F0F6 ;
     font-size: 24px;
     font-weight: bold;
-    text-decoration: none;
 }
-.dropdown{
-    position: relative;
-    display: inline-block;
-}
-.dropdown-label{
+
+.navbar .dropdown select{
+    background-color: #F5F0F6;
+    color: #091540;
+    padding: 10px 20px;
+    border:none ;
+    border-radius: 5px;
     font-size: 16px;
-    /* color: #333; */
-    margin-right: 10px;
-
-}
-select{
-    appearance: none;
-    padding: 5px 30px 10px 15px;
-    font-size: 14px;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
     cursor: pointer;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23091540" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 40px;
+}
+
+.navbar .dropdown select:hover{
+    background-color: #e0e0e0;
+}
+
+.navbar .search-bar form{
+    display: flex;
+    align-items: center;
+}
+.navbar .search-bar input {
+    padding:10px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    font-size: 16px;
     outline: none;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    width: 200px;
+}
+.navbar .search-bar button {
+    background-color:#ABD2FA;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.navbar .search-bar button:hover{
+    background-color: #3D518C;
+}
+.navbar .search-bar button i {
+    color:#F5F0F6;
+    font-size:16px;
 }
 
 
-#form{
-    width: 50%;
-}
+
 #img-container{
     display: flex;
     flex-direction: row;
