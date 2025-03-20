@@ -1,33 +1,79 @@
 const moviesUrl = "./movies.json"
 
+//arrays to store movies 
+let watchList = []
+let favourites = []
+
 fetch(moviesUrl) 
-.then(
-  res => res.json()
-  
-)
+.then( res => res.json())
 .then( data => {
-  // console.log(data)
   let moviesList = document.getElementById("list")
 
+  const renderMovies = (movies) => {
+    moviesList.innerHTML = ""
+    movies.forEach(movie => {
+  
+      // console.log(data)
+  
+      let movieList = document.createElement("li")
+     
+  
+      let poster = document.createElement("img")
+      let title = document.createElement("h3")
+  
+      //buttons
+      let plusButton = document.createElement("button")
+      let likeButton = document.createElement("button")
+      
+      poster.src = movie.Poster
+      poster.alt = movie.Title
+      title.textContent = movie.Title
+  
+      plusButton.innerHTML = '<i class="fas fa-plus"></i>';
+      plusButton.addEventListener("click" ,() => {
+        watchList.push(movie)
+        console.log("Added to watchlist", movie.Poster)
+        alert(`${movie.Title} added to watchlist!`)
+      })
+  
+      likeButton.innerHTML = '<i class="fas fa-heart"></i>';
+      likeButton.addEventListener("click", () => {
+        favourites.push(movie);
+        console.log("Added to favorites:", movie.Title);
+        alert(`${movie.Title} added to favorites!`);
+      });
+  
+  
+  
+  
+  
+      movieList.appendChild(poster)
+      movieList.appendChild(title)
+      movieList.appendChild(plusButton)
+      movieList.appendChild(likeButton)
+      moviesList.appendChild(movieList)
+  
+  })
 
-  data.forEach(movie => {
+  }
+  renderMovies(data)
 
-    //  moviesList.insertAdjacentElement = ("beforeend",`<li>${movie.Poster}</li>`)/
-     console.log(data)
+  
+const searchForm = document.getElementById("search-form")
+const searchInput =  document.getElementById("search")
 
-    let movieList = document.createElement("li")
-   
+searchForm.addEventListener("submit", (e) => {
+  e.preventDefault() //prevent form submission
+  const search = searchInput.value.toLowerCase()
 
-    let poster = document.createElement("img")
-    let title = document.createElement("h3")
-    
-    poster.src = movie.Poster
-    poster.alt = movie.Title
-    title.textContent = movie.Title
+  const filteredMovies = data.filter ((movie) => movie.Title.toLowerCase().includes(search))
 
-    movieList.appendChild(poster)
-    movieList.appendChild(title)
-    moviesList.appendChild(movieList)
+  renderMovies(filteredMovies)
 
 })
+
+
+ 
 })
+
+
