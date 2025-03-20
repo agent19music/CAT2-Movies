@@ -4,12 +4,15 @@
     box-sizing: border-box;
     /* background-color: #ABD2FA; */
 }
+.nav-container{
+    background-color:#091540;
+
+}
 .navbar{
     display: flex;
    /* flex-direction: row; */
    justify-content: space-between;
    align-items: center;
-   background-color:#091540;
    color:#F5F0F6 ;
    padding: 20px 40px;
    height: 80px;
