@@ -110,7 +110,7 @@
     height: auto;
     border-bottom: 1px solid #ddd;
 }
-#list{
+.list{
     list-style: none;
     padding: 0;
     display: flex;
@@ -119,7 +119,7 @@
     justify-content: center; 
 
 }
-#list li {
+.list li {
     width: 200px; /* Fixed width for each card */
     background-color: #fff; /* Card background color */
     border: 1px solid #ddd; /* Card border */
@@ -128,23 +128,23 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
   }
-  #list li:hover {
+  .list li:hover {
     transform: translateY(-5px); /* Slightly lift the card */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
   }
-  #list img {
+  .list img {
     width: 100%; /* Make the image fill the card width */
     height: 300px; /* Fixed height for the image */
     object-fit: cover; /* Ensure the image covers the area without distortion */
     border-bottom: 1px solid #ddd; /* Add a border below the image */
   }
-  #list h3 {
+  .list h3 {
     margin: 10px 0; /* Space above and below the title */
     font-size: 1.2em; /* Title font size */
     color: #333; /* Title color */
     padding: 0 10px; /* Add padding to the title */
   }
-  #list p {
+  .list p {
     margin: 5px 0; /* Space above and below the year */
     font-size: 1em; /* Year font size */
     color: #777; /* Year color */

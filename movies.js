@@ -1,23 +1,22 @@
 const moviesUrl = "./movies.json"
 
 //arrays to store movies 
-let watchList = []
-let favourites = []
+let watchList = JSON.parse(localStorage.getItem('watchList')) || []
+let favourites = JSON.parse(localStorage.getItem('favourites'))|| []
 
 fetch(moviesUrl) 
 .then( res => res.json())
 .then( data => {
-  let moviesList = document.getElementById("list")
+  let moviesList = document.querySelector(".list")
 
   const renderMovies = (movies) => {
-    moviesList.innerHTML = ""
+    // moviesList.innerHTML = ""
     movies.forEach(movie => {
   
       // console.log(data)
   
       let movieList = document.createElement("li")
      
-  
       let poster = document.createElement("img")
       let title = document.createElement("h3")
   
@@ -32,6 +31,7 @@ fetch(moviesUrl)
       plusButton.innerHTML = '<i class="fas fa-plus"></i>';
       plusButton.addEventListener("click" ,() => {
         watchList.push(movie)
+        localStorage.setItem('watchList', JSON.stringify(watchList))
         console.log("Added to watchlist", movie.Poster)
         alert(`${movie.Title} added to watchlist!`)
       })
@@ -39,13 +39,12 @@ fetch(moviesUrl)
       likeButton.innerHTML = '<i class="fas fa-heart"></i>';
       likeButton.addEventListener("click", () => {
         favourites.push(movie);
+        localStorage.setItem('favourites', JSON.stringify(favourites))
         console.log("Added to favorites:", movie.Title);
         alert(`${movie.Title} added to favorites!`);
       });
   
-  
-  
-  
+//append data to the list
   
       movieList.appendChild(poster)
       movieList.appendChild(title)
