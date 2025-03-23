@@ -90,7 +90,7 @@ const renderWatchlist = () => {
   if(watchListContainer) {
     const watchList = JSON.parse(localStorage.getItem('watchList')) || []
     console.log("rendering watchlist", watchList)
-    renderMovies(watchList, watchListContainer)
+    renderMovies(watchList, watchListContainer, true, false)
   }
   
 }
@@ -99,7 +99,7 @@ const renderFavourites = () => {
   if(favouritesContainer) {
     const favourites = JSON.parse(localStorage.getItem('favourites')) || []
     console.log("rendering favourites", favourites)
-    renderMovies(favourites, favouritesContainer)
+    renderMovies(favourites, favouritesContainer, false , true)
   }
 
 }
@@ -123,9 +123,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initializeDarkMode()
 
   const darkModeToggle = document.getElementById("dark-mode-toggle");
-  if (darkModeToggle) {
       darkModeToggle.addEventListener("click", darkMode);
-  }
+  
 
   fetch(moviesUrl) 
    .then( res => res.json())

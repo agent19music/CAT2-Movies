@@ -237,6 +237,9 @@ h2 {
     opacity: 0.9;
     /* background-color: #0056b3; */
 }
+
+
+
 #dark-mode-toggle {
     background-color: var(--button-background);
     color: var(--button-text);
