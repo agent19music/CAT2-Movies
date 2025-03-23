@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const darkModeToggle = document.getElementById("dark-mode-toggle");
   if (darkModeToggle) {
-      darkModeToggle.addEventListener("click", toggleDarkMode);
+      darkModeToggle.addEventListener("click", darkMode);
   }
 
   fetch(moviesUrl) 
