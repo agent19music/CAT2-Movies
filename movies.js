@@ -6,7 +6,7 @@ let favourites = JSON.parse(localStorage.getItem('favourites'))|| []
 
 
 
-  const renderMovies = (movies, container) => {
+  const renderMovies = (movies, container, isWatchList = false , isFavourites = false) => {
     container.innerHTML = ""
     movies.forEach(movie => {
   
@@ -21,6 +21,7 @@ let favourites = JSON.parse(localStorage.getItem('favourites'))|| []
       //buttons
       let plusButton = document.createElement("button")
       let likeButton = document.createElement("button")
+      let deleteButton = document.createElement("button")
       
       poster.src = movie.Poster
       poster.alt = movie.Title
@@ -48,13 +49,35 @@ let favourites = JSON.parse(localStorage.getItem('favourites'))|| []
         alert(`${movie.Title} added to favorites!`);
         renderFavourites()
       });
+
+      deleteButton.innerHTML = '<i class="fas fa-trash"></i> Delete';
+      deleteButton.addEventListener("click", () => {
+        if(isWatchList){
+          watchList = watchList.filter((item) => item.Title !== movie.Title)
+          localStorage.setItem('watchList', JSON.stringify(watchList))
+          renderWatchlist() //re-render the watchlist
+        }
+        else if (isFavourites){
+          favourites = favourites.filter((item) => item.Title !== movie.Title)
+          localStorage.setItem('favourites', JSON.stringify(favourites))
+          renderFavourites() //re-render the watchlist
+        }
+        console.log("Deleted", movie.TItle)
+        alert(`${movie.Title} deleted!`)
+      })
+
   
 //append data to the list
   
       movieCard.appendChild(poster)
       movieCard.appendChild(title)
-      movieCard.appendChild(plusButton)
-      movieCard.appendChild(likeButton)
+      if(!isWatchList && !isFavourites){
+        movieCard.appendChild(plusButton)
+        movieCard.appendChild(likeButton)
+      } else{
+        movieCard.appendChild(deleteButton)
+      }
+     
 
       //append card to thhe container
       container.appendChild(movieCard)
@@ -112,9 +135,7 @@ searchForm.addEventListener("submit", (e) => {
 
 })
 })
-
 })
-
  
 
 
