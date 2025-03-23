@@ -103,7 +103,29 @@ const renderFavourites = () => {
   }
 
 }
+
+const darkMode = () => {
+  const body = document.body
+  body.classList.toggle("dark-mode")
+  localStorage.setItem("dark-mode", body.classList.contains("dark-mode"))
+}
+
+const initializeDarkMode = () => {
+  const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    if (isDarkMode) {
+        document.body.classList.add("dark-mode");
+    }
+
+}
+
+
 document.addEventListener("DOMContentLoaded", () => {
+  initializeDarkMode()
+
+  const darkModeToggle = document.getElementById("dark-mode-toggle");
+  if (darkModeToggle) {
+      darkModeToggle.addEventListener("click", toggleDarkMode);
+  }
 
   fetch(moviesUrl) 
    .then( res => res.json())
