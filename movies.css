@@ -4,10 +4,10 @@
     box-sizing: border-box;
     /* background-color: #ABD2FA; */
 }
-.nav-container{
+/* .nav-container{
     background-color:#091540;
 
-}
+} */
 .navbar{
     display: flex;
    /* flex-direction: row; */
@@ -150,3 +150,56 @@
     color: #777; /* Year color */
     padding: 0 10px 10px; /* Add padding to the year */
   }
+.cards-container{
+    overflow-x: auto; /* horizontal scroll */
+    white-space: nowrap;
+    padding: 10px 0;
+}
+.cards-list{
+    display: inline-flex; 
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+}
+.cards-list li {
+    display: inline-block;
+    width: 200px;
+    margin-right: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+.cards-list li:hover {
+    transform: scale(1.05);
+}
+
+.cards-list img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+.cards-list h3 {
+    font-size: 16px;
+    padding: 10px;
+    margin: 0;
+    text-align: center;
+    white-space: normal; /* Allow text to wrap */
+}
+
+/* Buttons */
+.cards-list button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+.cards-list button:hover {
+    background-color: #0056b3;
+}

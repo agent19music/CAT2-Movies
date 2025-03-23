@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watchlist</title>
+    <link rel="stylesheet" href="movies.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="nav-container">
+        <nav>
+            <div class="navbar">
+                <div class="logo"><a href="index.html">MitchelleBoxd</a></div>
+                <div class="logo"><a href="./watchlist.html">Watchlist</a></div>
+                <div class="logo"><a href="./favourites.html">Favourites</a></div>
+            </div>
+        </nav>
+    </div>
+
+    <div>
+        <ul class="list"></ul>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const favouritesList = JSON.parse(localStorage.getItem('favourites')) || [];
+            const moviesList = document.querySelector(".list");
+
+            const renderMovies = (movies) => {
+                moviesList.innerHTML = "";
+                movies.forEach(movie => {
+                    let movieList = document.createElement("li");
+
+                    let poster = document.createElement("img");
+                    let title = document.createElement("h3");
+
+                    poster.src = movie.Poster;
+                    poster.alt = movie.Title;
+                    title.textContent = movie.Title;
+
+                    movieList.appendChild(poster);
+                    movieList.appendChild(title);
+                    moviesList.appendChild(movieList);
+                });
+            };
+
+            renderMovies(favouritesList);
+        });
+    </script>
+ 
+</body>
+</html>

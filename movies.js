@@ -4,18 +4,16 @@ const moviesUrl = "./movies.json"
 let watchList = JSON.parse(localStorage.getItem('watchList')) || []
 let favourites = JSON.parse(localStorage.getItem('favourites'))|| []
 
-fetch(moviesUrl) 
-.then( res => res.json())
-.then( data => {
-  let moviesList = document.querySelector(".list")
 
-  const renderMovies = (movies) => {
-    // moviesList.innerHTML = ""
+
+  const renderMovies = (movies, container) => {
+    container.innerHTML = ""
     movies.forEach(movie => {
   
       // console.log(data)
   
-      let movieList = document.createElement("li")
+      let movieCard = document.createElement("li")
+      movieCard.classList.add("movie-card")
      
       let poster = document.createElement("img")
       let title = document.createElement("h3")
@@ -28,35 +26,78 @@ fetch(moviesUrl)
       poster.alt = movie.Title
       title.textContent = movie.Title
   
-      plusButton.innerHTML = '<i class="fas fa-plus"></i>';
+      plusButton.innerHTML = '<i class="fas fa-plus"></i> Add to Watchlist';
+      //click functionality
       plusButton.addEventListener("click" ,() => {
         watchList.push(movie)
         localStorage.setItem('watchList', JSON.stringify(watchList))
-        console.log("Added to watchlist", movie.Poster)
+
+        console.log("Added to watchlist", movie.Title)
+
         alert(`${movie.Title} added to watchlist!`)
+        renderWatchlist()
       })
   
-      likeButton.innerHTML = '<i class="fas fa-heart"></i>';
+      likeButton.innerHTML = '<i class="fas fa-heart"></i> Add to Favourites';
       likeButton.addEventListener("click", () => {
         favourites.push(movie);
         localStorage.setItem('favourites', JSON.stringify(favourites))
+
         console.log("Added to favorites:", movie.Title);
+
         alert(`${movie.Title} added to favorites!`);
+        renderFavourites()
       });
   
 //append data to the list
   
-      movieList.appendChild(poster)
-      movieList.appendChild(title)
-      movieList.appendChild(plusButton)
-      movieList.appendChild(likeButton)
-      moviesList.appendChild(movieList)
+      movieCard.appendChild(poster)
+      movieCard.appendChild(title)
+      movieCard.appendChild(plusButton)
+      movieCard.appendChild(likeButton)
+
+      //append card to thhe container
+      container.appendChild(movieCard)
   
   })
 
   }
-  renderMovies(data)
+const renderWatchlist = () => {
+  let watchListContainer = document.querySelector(".watchlist-list")
+  if(watchListContainer) {
+    const watchList = JSON.parse(localStorage.getItem('watchList')) || []
+    console.log("rendering watchlist", watchList)
+    renderMovies(watchList, watchListContainer)
+  }
+  
+}
+const renderFavourites = () => {
+  let favouritesContainer = document.querySelector(".favourites-list")
+  if(favouritesContainer) {
+    const favourites = JSON.parse(localStorage.getItem('favourites')) || []
+    console.log("rendering favourites", favourites)
+    renderMovies(favourites, favouritesContainer)
+  }
 
+}
+document.addEventListener("DOMContentLoaded", () => {
+
+  fetch(moviesUrl) 
+   .then( res => res.json())
+   .then( data => {
+
+    let moviesList = document.querySelector(".movies-list")
+    renderMovies(data, moviesList)
+    // let watchList = document.querySelector(".watchlist-list")
+    // let favouritesList = document.querySelector(".favorites-list")
+
+   
+      renderWatchlist()
+      renderFavourites()
+    
+
+  
+//search func
   
 const searchForm = document.getElementById("search-form")
 const searchInput =  document.getElementById("search")
@@ -67,12 +108,14 @@ searchForm.addEventListener("submit", (e) => {
 
   const filteredMovies = data.filter ((movie) => movie.Title.toLowerCase().includes(search))
 
-  renderMovies(filteredMovies)
+  renderMovies(filteredMovies,moviesList)
 
 })
+})
 
+})
 
  
-})
+
 
 
