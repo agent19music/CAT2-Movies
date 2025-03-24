@@ -9,14 +9,14 @@
 
 } */
 :root {
-    --background-color: #ffffff;
+    --background-color: #fafafa;
     --text-color: #000000;
     --card-background: #f4f4f4;
-    --button-background: #007bff;
+    --button-background: #1e1e1e;
     --button-text: #ffffff;
-    --button-bg: #000000;
-    --button-hover-bg: #ff90e8;
-    --button-hover-text: #000000;
+    --button-bg: #1e1e1e;
+    --button-hover-bg: #bb86fc;
+    --button-hover-text: #121212;
     --button-border: #000000;
 }
 
@@ -29,7 +29,6 @@ body.dark-mode{
     --button-bg: #bb86fc;
     --button-hover-bg: #ffffff;
     --button-hover-text: #000000;
-    --button-border: #ffffff;
 }
 body{
     font-family: Arial, sans-serif;
@@ -358,8 +357,8 @@ h2 {
     --hover-text: var(--button-hover-text);
     color: var(--button-text);
     cursor: pointer;
-    border: 1px solid var(--button-border);
     border-radius: 4px;
+    border: none;
     background: var(--bg);
     transition: 0.2s;
     font-weight: 500;
@@ -442,4 +441,19 @@ h2 {
     font-size: 0.9rem;
     padding: 0 1rem;
     margin-bottom: 0.5rem;
+}
+
+.added-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8em 2em;
+    margin: 1rem;
+    color: #22c55e;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.added-tag i {
+    font-size: 1rem;
 }

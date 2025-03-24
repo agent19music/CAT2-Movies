@@ -21,60 +21,93 @@ const renderMovies = (movies, container, isWatchList = false , isFavourites = fa
     title.textContent = movie.Title
     releaseYear.textContent = movie.Year
 
+    const isInWatchlist = watchList.some(item => item.Title === movie.Title);
+    const isInFavorites = favourites.some(item => item.Title === movie.Title);
+
     //buttons
     let plusButton = document.createElement("button")
-    plusButton.className = 'button';
     let likeButton = document.createElement("button")
-    likeButton.className = 'button';
     let deleteButton = document.createElement("button")
     deleteButton.className = 'button';
     
-    plusButton.innerHTML = '<i class="fas fa-plus"></i> Add to Watchlist';
-    //click functionality
-    plusButton.addEventListener("click" ,() => {
-      watchList.push(movie)
-      localStorage.setItem('watchList', JSON.stringify(watchList))
+    if (!isInWatchlist) {
+      plusButton.className = 'button';
+      plusButton.innerHTML = '<i class="fas fa-plus"></i> Add to Watchlist';
+      plusButton.addEventListener("click", () => {
+        if (!watchList.some(item => item.Title === movie.Title)) {
+          watchList.push(movie);
+          localStorage.setItem('watchList', JSON.stringify(watchList));
+          
+          Toastify({
+            text: `${movie.Title} added to watchlist!`,
+            duration: 3000,
+            gravity: "top",
+            position: "center",
+            style: {
+              background: "var(--button-bg)",
+              color: "var(--button-text)"
+            },
+            avatar: "/assets/checkmark.png"
+          }).showToast();
+          
+          renderWatchlist();
+          renderMovies(movies, container, isWatchList, isFavourites); // Re-render to update buttons
+        }
+      });
+    } else {
+      plusButton = document.createElement("span");
+      plusButton.className = 'added-tag';
+      plusButton.innerHTML = '<i class="fas fa-check"></i> Added to Watchlist';
+    }
 
-      console.log("Added to watchlist", movie.Title)
-
-      Toastify({
-        text: (`${movie.Title} added to watchlist!`),
-        duration: 3000,
-        gravity: "top", // Position the toast at the top
-        position: "center", // Center the toast horizontally
-        style: {
-          background: "black",
-          color: "white"
-        },
-        avatar: "/checkmark.png" // Checkmark icon
-      }).showToast();
-      renderWatchlist()
-          })
+    likeButton.className = 'button';
     likeButton.innerHTML = '<i class="fas fa-heart"></i> Add to Favourites';
     likeButton.addEventListener("click", () => {
-      favourites.push(movie);
-      localStorage.setItem('favourites', JSON.stringify(favourites))
+      if (!isInFavorites) {
+        favourites.push(movie);
+        localStorage.setItem('favourites', JSON.stringify(favourites));
 
-      console.log("Added to favorites:", movie.Title);
-
-      alert(`${movie.Title} added to favorites!`);
-      renderFavourites()
+        Toastify({
+          text: `${movie.Title} added to favorites!`,
+          duration: 3000,
+          gravity: "top",
+          position: "center",
+          style: {
+            background: "var(--button-bg)",
+            color: "var(--button-text)"
+          },
+          avatar: "/checkmark.png"
+        }).showToast();
+        
+        renderFavourites();
+      }
     });
 
     deleteButton.innerHTML = '<i class="fas fa-trash"></i> Delete';
     deleteButton.addEventListener("click", () => {
       if(isWatchList){
-        watchList = watchList.filter((item) => item.Title !== movie.Title)
-        localStorage.setItem('watchList', JSON.stringify(watchList))
-        renderWatchlist() //re-render the watchlist
+        watchList = watchList.filter((item) => item.Title !== movie.Title);
+        localStorage.setItem('watchList', JSON.stringify(watchList));
+        
+        Toastify({
+          text: `${movie.Title} removed!`,
+          duration: 3000,
+          gravity: "top",
+          position: "center",
+          style: {
+            background: "#1e1e1e",
+            color: "#ffffff"
+          },
+          avatar: "/assets/bin.png"
+        }).showToast();
+        
+        renderWatchlist();
       }
       else if (isFavourites){
         favourites = favourites.filter((item) => item.Title !== movie.Title)
         localStorage.setItem('favourites', JSON.stringify(favourites))
         renderFavourites() //re-render the watchlist
       }
-      console.log("Deleted", movie.TItle)
-      alert(`${movie.Title} deleted!`)
     })
 
     //append data to the list
@@ -83,7 +116,9 @@ const renderMovies = (movies, container, isWatchList = false , isFavourites = fa
     movieCard.appendChild(releaseYear) // Add year before buttons
     if(!isWatchList && !isFavourites){
       movieCard.appendChild(plusButton)
-      movieCard.appendChild(likeButton)
+      if (!isInFavorites) {
+        movieCard.appendChild(likeButton);
+      }
     } else{
       movieCard.appendChild(deleteButton)
     }
