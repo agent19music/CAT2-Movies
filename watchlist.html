@@ -9,13 +9,32 @@
 </head>
 <body>
     <div class="nav-container">
-        <nav>
-            <div class="navbar">
-                <div class="logo"><a href="index.html">MitchelleBoxd</a></div>
-                <div class="logo"><a href="./watchlist.html">Watchlist</a></div>
-                <div class="logo"><a href="./favourites.html">Favourites</a></div>
+        <nav class="navbar">
+            <button class="mobile-menu-button">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="logo">
+                <a href="./movies.html">MitchelleBoxd</a>
             </div>
+            <div class="nav-links">
+                <a href="watchlist.html">Watchlist</a>
+                <a href="#">Favourites</a>
+            </div>
+            <button id="dark-mode-toggle">
+                <i class="fas fa-moon"></i>
+                <span class="toggle-text">Dark</span>
+            </button>
         </nav>
+    </div> 
+    <div class="search-container">
+        <form action="#" id="search-form" class="search-bar">
+            <input type="text" placeholder="Search my watchlist..." name="search" id="search">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+    </div>
+    <div class = "movies-container">
+        <ul class="cards-list movies-list"></ul>
+
     </div>
 
     <div>

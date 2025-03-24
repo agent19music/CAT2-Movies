@@ -15,6 +15,7 @@ let favourites = JSON.parse(localStorage.getItem('favourites'))|| []
      
       let poster = document.createElement("img")
       let title = document.createElement("h3")
+      let releaseYear = document.createElement("p")
   
       //buttons
       let plusButton = document.createElement("button")
@@ -24,6 +25,7 @@ let favourites = JSON.parse(localStorage.getItem('favourites'))|| []
       poster.src = movie.Poster
       poster.alt = movie.Title
       title.textContent = movie.Title
+      releaseYear.textContent = movie.Year
   
       plusButton.innerHTML = '<i class="fas fa-plus"></i> Add to Watchlist';
       //click functionality
@@ -33,7 +35,12 @@ let favourites = JSON.parse(localStorage.getItem('favourites'))|| []
 
         console.log("Added to watchlist", movie.Title)
 
-        alert(`${movie.Title} added to watchlist!`)
+        Toastify({
+          text: (`${movie.Title} added to watchlist!`),
+          duration: 3000,
+          gravity: "top", // Position the toast at the top
+          position: "center" // Center the toast horizontally
+        }).showToast();
         renderWatchlist()
       })
   
