@@ -11,7 +11,7 @@ const renderWatchlistPage = (movies) => {
             <img src="/assets/empty.png" alt="Empty watchlist">
             <h3>Oops! Nothing here yet</h3>
             <p>Let's add some movies to your watchlist!</p>
-            <a href="movies.html" class="button">Browse Movies</a>
+            <a href="index.html" class="button">Browse Movies</a>
         `;
         container.appendChild(emptyState);
         return;
