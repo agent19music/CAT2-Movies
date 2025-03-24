@@ -51,7 +51,7 @@ const renderWatchlistPage = (movies) => {
                     background: "#1e1e1e",
                     color: "#ffffff"
                 },
-                avatar: "/assets/bin.png"
+                avatar: "https://pub-c6a134c8e1fd4881a475bf80bc0717ba.r2.dev/assets/bin.png"
             }).showToast();
             
             renderWatchlistPage(watchList);

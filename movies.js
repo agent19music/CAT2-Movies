@@ -76,7 +76,7 @@ const renderMovies = (movies, container, isWatchList = false , isFavourites = fa
             background: "var(--button-bg)",
             color: "var(--button-text)"
           },
-          avatar: "/checkmark.png"
+          avatar: "https://pub-c6a134c8e1fd4881a475bf80bc0717ba.r2.dev/assets/checkmark.png"
         }).showToast();
         
         renderFavourites();
