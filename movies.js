@@ -8,9 +8,7 @@ let favourites = JSON.parse(localStorage.getItem('favourites'))|| []
 
   const renderMovies = (movies, container, isWatchList = false , isFavourites = false) => {
     container.innerHTML = ""
-    movies.forEach(movie => {
-  
-      // console.log(data)
+    movies.forEach(movie => { 
   
       let movieCard = document.createElement("li")
       movieCard.classList.add("movie-card")
@@ -131,15 +129,9 @@ document.addEventListener("DOMContentLoaded", () => {
    .then( data => {
 
     let moviesList = document.querySelector(".movies-list")
-    renderMovies(data, moviesList)
-    // let watchList = document.querySelector(".watchlist-list")
-    // let favouritesList = document.querySelector(".favorites-list")
-
-   
+    renderMovies(data, moviesList)   
       renderWatchlist()
       renderFavourites()
-    
-
   
 //search func
   
