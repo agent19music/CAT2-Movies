@@ -8,7 +8,7 @@ const renderFavouritesPage = (movies) => {
         const emptyState = document.createElement('div');
         emptyState.className = 'empty-state';
         emptyState.innerHTML = `
-            <img src="/assets/empty.png" alt="Empty favourites">
+            <img src="https://pub-c6a134c8e1fd4881a475bf80bc0717ba.r2.dev/assets/empty.png" alt="Empty favourites">
             <h3>Oops! Nothing here yet</h3>
             <p>Let's add some movies to your favourites!</p>
             <a href="index.html" class="button">Browse Movies</a>
