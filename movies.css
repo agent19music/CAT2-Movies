@@ -330,12 +330,11 @@ h2 {
 
 .search-container button {
     padding: 0.75rem 1.5rem;
-    background: var(--button-background);
+    background: var(--button-bg);
     color: var(--button-text);
     border: none;
-    border-radius: 0.5rem;
+    border-radius: 0 0.5rem 0.5rem 0;
     cursor: pointer;
-    transition: opacity 0.2s ease;
 }
 
 .search-container button:hover {
@@ -352,8 +351,8 @@ h2 {
     }
 }
 
-/* Base button style */
-.button-base {
+/* Common button styles */
+.button {
     --bg: var(--button-bg);
     --hover-bg: var(--button-hover-bg);
     --hover-text: var(--button-hover-text);
@@ -361,50 +360,86 @@ h2 {
     cursor: pointer;
     border: 1px solid var(--button-border);
     border-radius: 4px;
-    padding: 0.8em 2em;
     background: var(--bg);
     transition: 0.2s;
     font-weight: 500;
     font-size: 0.9rem;
 }
 
-.button-base:hover {
+.button:hover {
     color: var(--hover-text);
     transform: translate(-0.25rem, -0.25rem);
     background: var(--hover-bg);
     box-shadow: 0.25rem 0.25rem var(--bg);
 }
 
-.button-base:active {
+.button:active {
     transform: translate(0);
     box-shadow: none;
 }
 
-/* Update existing buttons to use new style */
+/* Apply button styles to specific buttons */
 .search-container button {
-    composes: button-base;
-    border-radius: 0 4px 4px 0;
     padding: 0.8em 1.5em;
+    border-radius: 0 4px 4px 0;
 }
 
 .movies-list button {
-    composes: button-base;
     width: calc(100% - 2rem);
     margin: 1rem;
+    padding: 0.8em 2em;
 }
 
 #dark-mode-toggle {
-    composes: button-base;
     margin-left: auto;
+    padding: 0.6em 1.2em;
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.6em 1.2em;
 }
 
-/* Remove old button hover states */
-.search-container button:hover,
-.movies-list button:hover,
-#dark-mode-toggle:hover {
+/* Remove any conflicting button styles */
+.search-container button,
+.movies-list button,
+#dark-mode-toggle {
     opacity: 1;
+    background: var(--button-bg);
+    color: var(--button-text);
+    border: 1px solid var(--button-border);
+}
+
+/* Remove these old button styles */
+.cards-list button,
+.movies-list button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--button-background);
+    color: var(--button-text);
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Remove these old hover styles */
+.cards-list button:hover,
+.movies-list button:hover {
+    opacity: 0.9;
+}
+
+/* Update the movies-list button styles to work with the new button class */
+.movies-list .button {
+    width: calc(100% - 2rem);
+    margin: 1rem;
+    padding: 0.8em 2em;
+}
+
+/* Add year styling */
+.movie-card .year {
+    color: var(--text-color);
+    opacity: 0.8;
+    font-size: 0.9rem;
+    padding: 0 1rem;
+    margin-bottom: 0.5rem;
 }
