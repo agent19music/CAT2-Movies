@@ -3,8 +3,9 @@ const moviesUrl = "./movies.json"
 //arrays to store movies 
 let watchList = JSON.parse(localStorage.getItem('watchList')) || []
 let favourites = JSON.parse(localStorage.getItem('favourites'))|| []
+let watched = JSON.parse(localStorage.getItem('watched')) || []
 
-const renderMovies = (movies, container, isWatchList = false , isFavourites = false) => {
+const renderMovies = (movies, container, isWatchList = false , isFavourites = false , isWatched = false) => {
   container.innerHTML = ""
   movies.forEach(movie => { 
 
@@ -28,10 +29,11 @@ const renderMovies = (movies, container, isWatchList = false , isFavourites = fa
     let plusButton = document.createElement("button")
     let likeButton = document.createElement("button")
     let deleteButton = document.createElement("button")
+    let watchedButton = document.createElement("button")
     deleteButton.className = 'button';
     
     if (!isInWatchlist) {
-      plusButton.className = 'button';
+      plusButton.className = 'button'; // Ensure same class as other buttons
       plusButton.innerHTML = '<i class="fas fa-plus"></i> Add to Watchlist';
       plusButton.addEventListener("click", () => {
         if (!watchList.some(item => item.Title === movie.Title)) {
@@ -110,17 +112,46 @@ const renderMovies = (movies, container, isWatchList = false , isFavourites = fa
       }
     })
 
+
+    watchedButton.className = 'button';
+    watchedButton.innerHTML = '<i class="fa-regular fa-circle-check"></i> Add to watched'; 
+    watchedButton.addEventListener("click", () => {
+      if (!isInFavorites) {
+        watched.push(movie);
+        localStorage.setItem('watched', JSON.stringify(watched));
+
+        Toastify({
+          text: `${movie.Title} added to watched movies!`,
+          duration: 3000,
+          gravity: "top",
+          position: "center",
+          style: {
+            background: "var(--button-bg)",
+            color: "var(--button-text)"
+          },
+          avatar: "https://pub-c6a134c8e1fd4881a475bf80bc0717ba.r2.dev/assets/checkmark.png"
+        }).showToast();
+        
+        // renderWatchedPage();
+      }
+    });
+
     //append data to the list
     movieCard.appendChild(poster)
     movieCard.appendChild(title)
-    movieCard.appendChild(releaseYear) // Add year before buttons
+    movieCard.appendChild(releaseYear)
+     // Add year before buttons
     if(!isWatchList && !isFavourites){
       movieCard.appendChild(plusButton)
+      movieCard.appendChild(watchedButton) // Append watched button before favourites
       if (!isInFavorites) {
         movieCard.appendChild(likeButton);
       }
-    } else{
+    } else {
       movieCard.appendChild(deleteButton)
+      if (!isInFavorites && !isWatched) { // Ensure favourites button shows on watched tab
+        movieCard.appendChild(likeButton);
+      }
     }
    
     //append card to thhe container
@@ -147,6 +178,8 @@ const renderFavourites = () => {
   }
 
 }
+
+
 
 const darkMode = () => {
   const body = document.body
@@ -176,6 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderMovies(data, moviesList)   
     renderWatchlist()
     renderFavourites()
+    renderWatchedPage()
   
     // Live search implementation
     const searchInput = document.getElementById("search")
