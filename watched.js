@@ -62,10 +62,37 @@ const renderWatchedPage = (movies) => {
         title.textContent = movie.Title;
         releaseYear.textContent = movie.Year;
 
+        let deleteButton = document.createElement("button")
+        deleteButton.className = 'button';
+        deleteButton.innerHTML = '<i class="fas fa-trash"></i> Remove from Watched';
+        
+        deleteButton.addEventListener("click", () => {
+            let watched = JSON.parse(localStorage.getItem('watched')) || [];
+            watched = watched.filter(item => item.Title !== movie.Title);
+            localStorage.setItem('watched', JSON.stringify(watched));
+            
+            Toastify({
+                text: `${movie.Title} removed from watched!`,
+                duration: 3000,
+                gravity: "top",
+                position: "center",
+                style: {
+                    background: "#1e1e1e",
+                    color: "#ffffff"
+                },
+                avatar: "https://pub-c6a134c8e1fd4881a475bf80bc0717ba.r2.dev/assets/bin.png"
+            }).showToast();
+            
+            renderWatchedPage(watched);
+        });
+
+
+
         movieCard.appendChild(poster);
         movieCard.appendChild(title);
         movieCard.appendChild(releaseYear);
         movieCard.appendChild(likeButton)
+        movieCard.appendChild(deleteButton)
         container.appendChild(movieCard);
     })
 }
