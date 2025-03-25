@@ -34,7 +34,7 @@ const renderMovies = (movies, container, isWatchList = false , isFavourites = fa
     deleteButton.className = 'button';
     
     if (!isInWatchlist) {
-      plusButton.className = 'button'; // Ensure same class as other buttons
+      plusButton.className = 'button'; 
       plusButton.innerHTML = '<i class="fas fa-plus"></i> Add to Watchlist';
       plusButton.addEventListener("click", () => {
         if (!watchList.some(item => item.Title === movie.Title)) {
@@ -114,10 +114,13 @@ const renderMovies = (movies, container, isWatchList = false , isFavourites = fa
     })
 
 
-    watchedButton.className = 'button';
-    watchedButton.innerHTML = '<i class="fa-regular fa-circle-check"></i> Add to watched'; 
-    watchedButton.addEventListener("click", () => {
+   
       if (!isInWatched) {
+        watchedButton.className ='button'
+        watchedButton.innerHTML = '<i class="fas fa-plus"></i> Add to watched'; 
+
+        watchedButton.addEventListener("click", () => {
+        if(!watched.some(item => item.Title === movie.Title)){
         watched.push(movie);
         localStorage.setItem('watched', JSON.stringify(watched));
 
@@ -131,11 +134,19 @@ const renderMovies = (movies, container, isWatchList = false , isFavourites = fa
             color: "var(--button-text)"
           },
           avatar: "https://pub-c6a134c8e1fd4881a475bf80bc0717ba.r2.dev/assets/checkmark.png"
-        }).showToast();
-        
-        // renderWatchedPage();
+          }).showToast();
+            
+            renderWatchedPage();
+            renderMovies(movies, container, isWatchList, isFavourites, isWatched); // Re-render to update buttons
+
+          }
+        });
+      } else {
+        watchedButton = document.createElement("span")
+        watchedButton.className = 'added-tag'
+        watchedButton.innerHTML = '<i class="fas fa-check"></i> Added to Watchlist';
       }
-    });
+  
 
     //append data to the list
     movieCard.appendChild(poster)
