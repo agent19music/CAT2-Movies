@@ -441,6 +441,9 @@ h2 {
     font-size: 0.9rem;
     padding: 0 1rem;
     margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: center;
+    
 }
 
 .added-tag {
