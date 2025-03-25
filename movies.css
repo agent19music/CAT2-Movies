@@ -407,7 +407,7 @@ h2 {
     border: 1px solid var(--button-border);
 }
 
-/* Remove these old button styles */
+
 .cards-list button,
 .movies-list button {
     display: block;

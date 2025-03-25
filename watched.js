@@ -27,11 +27,16 @@ const renderWatchedPage = (movies) => {
         let releaseYear = document.createElement("p");
         releaseYear.classList.add("year");
 
+        // const favourites = JSON.parse(localStorage.getItem('favourites'))|| []
+        // const isInFavourites = favourites.some(item => item.Title === movie.Title)
+
         let likeButton = document.createElement("button")
         likeButton.className = "button"
         likeButton.innerHTML = '<i class="fas fa-heart"></i> Add to Favourites'
         likeButton.addEventListener("click", () => {
-            if (!isInFavorites) {
+
+         let favourites = JSON.parse(localStorage.getItem('favourites')) || []
+
               favourites.push(movie);
               localStorage.setItem('favourites', JSON.stringify(favourites));
       
@@ -47,10 +52,10 @@ const renderWatchedPage = (movies) => {
                 avatar: "https://pub-c6a134c8e1fd4881a475bf80bc0717ba.r2.dev/assets/checkmark.png"
               }).showToast();
               
-              renderFavourites(favourites);
+              renderWatchedPage(movies);
             }
          
-          });
+      );
 
         poster.src = movie.Poster;
         poster.alt = movie.Title;
@@ -60,26 +65,26 @@ const renderWatchedPage = (movies) => {
         movieCard.appendChild(poster);
         movieCard.appendChild(title);
         movieCard.appendChild(releaseYear);
+        movieCard.appendChild(likeButton)
         container.appendChild(movieCard);
     })
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    let watched = JSON.parse(localStorage.getItem("watched"));
-    if (!watched) {
-        watched = [];
-    }
+    const watched = JSON.parse(localStorage.getItem("watched"))|| [];
     renderWatchedPage(watched);
 
       // Live search implementation
       const searchInput = document.getElementById("search");
       searchInput.addEventListener("input", (e) => {
           const search = e.target.value.toLowerCase();
-          const filteredMovies = favourites.filter(movie => 
+          const watched = JSON.parse(localStorage.getItem("watched")) || [];
+          const filteredMovies = watched.filter(movie => 
               movie.Title.toLowerCase().includes(search)
           );
-          renderFavouritesPage(filteredMovies);
+          renderWatchedPage(filteredMovies);
       });
+    
 
       //initialize dark mode
 

@@ -24,6 +24,7 @@ const renderMovies = (movies, container, isWatchList = false , isFavourites = fa
 
     const isInWatchlist = watchList.some(item => item.Title === movie.Title);
     const isInFavorites = favourites.some(item => item.Title === movie.Title);
+    const isInWatched = watched.some(item=> item.Title === movie.Title)
 
     //buttons
     let plusButton = document.createElement("button")
@@ -70,7 +71,7 @@ const renderMovies = (movies, container, isWatchList = false , isFavourites = fa
         localStorage.setItem('favourites', JSON.stringify(favourites));
 
         Toastify({
-          text: `${movie.Title} added to favorites!`,
+          text: `${movie.Title} added to favourites!`,
           duration: 3000,
           gravity: "top",
           position: "center",
@@ -116,7 +117,7 @@ const renderMovies = (movies, container, isWatchList = false , isFavourites = fa
     watchedButton.className = 'button';
     watchedButton.innerHTML = '<i class="fa-regular fa-circle-check"></i> Add to watched'; 
     watchedButton.addEventListener("click", () => {
-      if (!isInFavorites) {
+      if (!isInWatched) {
         watched.push(movie);
         localStorage.setItem('watched', JSON.stringify(watched));
 
